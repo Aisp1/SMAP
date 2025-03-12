@@ -1,0 +1,60 @@
+### PLAN:
+To solve this problem, we start by counting the starting and ending characters of each binary word in the list. This helps us identify any imbalances, where there may be more words starting with '0' than ending with '0' (or vice versa), or similarly for '1'. Once we identify these imbalances, we can calculate how many reversals are required to balance them.
+
+Next, we identify the minimum number of words that need to be reversed to achieve this balance. For example, if there are more words ending in '0' than starting with '0', we need to reverse some of the words that start with '1' and end with '0' to balance the counts. This process is repeated for each character imbalance.
+
+After determining which words to reverse, we reverse the selected words and ensure that all words remain unique. If a reversal leads to a duplicate, we skip that reversal or choose another word to reverse instead. With the balanced set of words, we then arrange them in a sequence that meets the game rules, where each word’s last character matches the next word’s first character. We start with any word and continue building the sequence by matching characters accordingly.
+
+Finally, we output the total number of reversals made, along with the modified list of words, ensuring the sequence is valid with minimal reversals. This approach ensures minimal modifications while fulfilling the game’s requirements.
+
+
+
+### RESPONSE:
+STEP 1: GENERATE SUB-MODULES:
+```module
+def count_start_end_chars(words):
+    """
+    Description: This function counts the number of words that start and end with each character.
+    Input:
+    words (list): A list of binary words.
+    Output:
+    start_count (defaultdict): A dictionary containing the count of words that start with each character.
+    end_count (defaultdict): A dictionary containing the count of words that end with each character.
+    """
+```
+
+```module
+def reverse_words(words, reversed_indices):
+    """
+    Description: This function reverses the specified words in the given list.
+    Input:
+    words (list): A list of binary words.
+    reversed_indices (list): A list of indices indicating the words to be reversed.
+    Output:
+    reversed_words (list): A new list of words with the specified words reversed.
+    """
+```
+
+STEP 2: GENERATE PYTHON CODE
+```python
+import collections
+from utils import *
+
+def count_start_end_chars(words):
+    start_count = collections.defaultdict(int)
+        end_count = collections.defaultdict(int)
+        for word in words:
+            start_count[word[0]] += 1
+            end_count[word[-1]] += 1
+        return start_count, end_count
+
+def reverse_words(words, reversed_indices):
+    reversed_words = []
+    for i, word in enumerate(words):
+        if i in reversed_indices:
+            reversed_words.append(word[::-1])
+        else:
+            reversed_words.append(word)
+    return reversed_words
+```
+
