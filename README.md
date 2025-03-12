@@ -1,20 +1,10 @@
-<!-- 
-# Official MapCoder Repository
-- [Visit our webpage](https://md-ashraful-pramanik.github.io/mapcoder.github.io/)
-- Visit our paper for more details -->
 
-# MapCoder: Multi-Agent Code Generation for Competitive Problem Solving
 
-<p align="center">
-• 🐱 <a href="https://github.com/Md-Ashraful-Pramanik/MapCoder" target="_blank">Code</a> 
-• 📃 <a href="https://arxiv.org/abs/2405.11403" target="_blank">Paper</a>
-• 🌐 <a href="https://md-ashraful-pramanik.github.io/mapcoder.github.io/" target="_blank">Website</a>
-</p>
+# SMAP: Self-enhanced Multi-Agent Code Generation for Competitive Problem Solving
 
 
 ## Abstract
-Code synthesis, which requires a deep understanding of complex natural language (NL) problem descriptions, generation of code instructions for complex algorithms and data structures, and the successful execution of comprehensive unit tests, presents a significant challenge. Thus, while large language models (LLMs) demonstrate impressive proficiency in natural language processing (NLP), their performance in code generation tasks remains limited. In this paper, we introduce a new approach to code generation tasks leveraging the multi-agent prompting that uniquely replicates the full cycle of program synthesis as observed in human developers. Our framework, MapCoder, consists of four LLM agents specifically designed to emulate the stages of this cycle: recalling relevant examples, planning, code generation, and debugging. After conducting thorough experiments, with multiple LLMs ablations and analyses across eight challenging competitive problem-solving and program synthesis benchmarks—MapCoder showcases remarkable code generation capabilities, achieving their new state-of-the-art (pass@1)
-results—(HumanEval 93.9%, MBPP 83.1%, APPS 22.0%, CodeContests 28.5%, and xCodeEval 45.3%). Moreover, our method consistently delivers superior performance across various programming languages and varying problem difficulties. 
+While large language models (LLMs) have demonstrated impressive ability in natural language processing (NLP), they are struggling for addressing the code generation tasks with complicated human intent. It is universally recognized that‌ humans require insights into problem descriptions, elaborate planning to decompose complex solutions and organize code with modules prior to implementation. To achieve this aim, we introduce a self-enhanced multi-agent prompting (SMAP) approach to code generation tasks by imitating human developers, where enhanced LLM agents are mainly committed to emulating two heuristic phases, namely consensus planning phase and modular programming phase after distilling the problem. Specifically, in the consensus planning phase, LLM agent leverages the insight into the discrepancies among potential prospectives for high-quality plan with less overlooked details. Then, in the modular programming phase, the agent generates code solution by fully considering the hierarchical structure of code modules. We conduct extensive experiments on eight challenging competitive problem-solving and program synthesis benchmarks. Experimental results show that SMAP showcases remarkable code generation capabilities, achieving new state-of-the-art (pass@1) results. Moreover, our SMAP approach consistently delivers superior performance across various programming languages and varying problem difficulties.
 
 
 ## MapCoder Overview
@@ -22,13 +12,13 @@ results—(HumanEval 93.9%, MBPP 83.1%, APPS 22.0%, CodeContests 28.5%, and xCod
 Our goal is to develop a multi-agent code generation approach for competitive problem-solving. In order to do so, our framework, MapCoder, replicates the human programming cycle through four LLM agents - retrieval, plan, code, and debug. We devise a pipeline sequence for MapCoder, intelligently cascading the agents in a structured way and enhancing each agent's capability by augmenting in-context learning signals from previous agents in the pipeline. However, not all the agent responses/outputs are equally useful. Therefore, additionally, MapCoder features an adaptive agent traversal schema to interact among corresponding agents dynamically, iteratively enhancing the generated code by, for example, fixing bugs, while maximizing the usage of the LLM agents. Here, we first discuss the agents (as per the pipeline), their prompts, and interactions, followed by the dynamic agent traversal protocol in MapCoder towards code generation for competitive problem-solving.
 
 ### » Retrieval Agent
-Our first agent, the Retrieval Agent, recalls past relevant problem-solving instances, akin to human memory. It finds k (user-defined) similar problems without manual crafting or external retrieval models. Instead, we leverage the LLM agent itself, instructing it to generate such problems.
+
 ### » Planning Agent
-The second agent, the Planning Agent, aims to create a step-by-step plan for the original problem. Our Planning Agent uses examples and their plans obtained from the retrieval agent to generate plans for the original problem. A straightforward approach would be to utilize all examples collectively to generate a single target plan. However, not all retrieved examples hold equal utility. Concatenating examples in a random order may compromise the LLM's ability to generate accurate planning.
+
 ### » Coding Agent
-Next is the Coding Agent. It takes the problem description, and a plan from the Planning Agent as input and translates the corresponding planning into code to solve the problem. During the traversing of agents, Coding Agent takes the original problem and one particular plan from the Planning Agent, generates the code, and test on sample I/O. If the initial code fails, the agent transfers it to the next agent for debugging. Otherwise, predicts that as the final solution.
+
 ### » Debugging Agent
-Finally, the Debugging Agent utilizes sample I/O from the problem description to rectify bugs in the generated code. Similar to humans cross-checking their plan while fixing bugs, our pipeline supplements the Debugging Agent with plans from the Planning Agent. This plan-derived debugging significantly enhances bug fixing in MapCoder, underscoring the pivotal roles played by both the Debugging Agent and the Planning Agent in the generation process.
+
 
 
 ## Problem Solving Example
