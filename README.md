@@ -24,7 +24,7 @@ We propose a self-enhanced multi-agent promoting (SMAP) approach, which aims to 
 ## Running our project
 1. Clone our project
 ```
-git clone https://github.com/Md-Ashraful-Pramanik/MapCoder && cd MapCoder
+git clone https://github.com/Aisp1/SMAP && cd SMAP
 ```
 
 2. Create a new conda or python virtual environment and run the following command
