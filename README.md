@@ -8,7 +8,7 @@ While large language models (LLMs) have demonstrated impressive ability in natur
 
 
 ## SMAP Overview
-![MapCoder Overview](./images/MapCoder-Overview.png)
+![SMAP Overview](./images/overview.pdf)
 We propose a self-enhanced multi-agent promoting (SMAP) approach, which aims to make LLM agents think like senior programmers for competitive problem-solving. Our framework enhances the unsophisticated programming cycle with four LLM agents, and it includes rule-based retriever, consensus planning, structured programming and plan-derived debugging. SMAP first provides insights into problem description through rule-based retriever. Then it refines the plans derived from retrieved examples by reflecting on differences in perspectives. Sequentially, it enhances the relationship among modules with hierarchically modular coding. Finally, plan-derived debugging refers to the sample I/O from the problem description for fixing bugs in generated code, which requires no extra test case generation. In this section, we first introduce the retriever agent, and then illustrate the planning and the programming in detail. 
 
 ### » Retrieval Agent
