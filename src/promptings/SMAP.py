@@ -675,7 +675,7 @@ In simpler terms, Enhance the provided plan to include all intermediate steps an
                     c_example = infile.read()
 
             final_code = f"""
-Given a competitive programming problem generate {self.language} code to solve the problem.\n## Problem information:\n{self.data.get_prompt(item)}\n{algorithm_prompt}\n## Planning:\n{planning}\n##Relevant Functions:\n{module_code}\n{sample_io_prompt}\n## Let's think step by step.
+Given a competitive programming problem generate {self.language} code to solve the problem.\n## Problem information:\n{problem_info}\n{algorithm_prompt}\n## Planning:\n{planning}\n##Relevant Functions:\n{module_code}\n{sample_io_prompt}\n## Let's think step by step.
 ## Requirements:
 1. Your response must contain only the {self.language} code to solve this problem. 
 2. Analyze the structural relationships between modules (functions/classes), including:
@@ -752,7 +752,7 @@ Generate the output strictly in the XML format of the Example:
                 input_for_improving_code = [
                     {
                         "role": "user",
-                        "content": f"Given a competitive programming problem you have generated {self.language} code to solve the problem. But the generated code can not pass sample test cases. Improve your code to solve the problem correctly.\n{algorithm_prompt}\n## Problem to be solved:\n{self.data.get_prompt(item)}\n{response}\n## Test Report:\n{test_log}\n## Modified Planning:\n## Let's think step by step to modify {self.language} Code for solving this problem.\n## Reducing code time complexity as much as possible, leveraging additional space if necessary to achieve faster execution. \n\n----------------\nImportant:\n{std_input_prompt}\n## Your response must contain the modified planning and then the {self.language} code inside ``` block to solve this problem."
+                        "content": f"Given a competitive programming problem you have generated {self.language} code to solve the problem. But the generated code can not pass sample test cases. Improve your code to solve the problem correctly.\n{algorithm_prompt}\n## Problem to be solved:\n{problem_info}\n{response}\n## Test Report:\n{test_log}\n## Modified Planning:\n## Let's think step by step to modify {self.language} Code for solving this problem.\n## Reducing code time complexity as much as possible, leveraging additional space if necessary to achieve faster execution. \n\n----------------\nImportant:\n{std_input_prompt}\n## Your response must contain the modified planning and then the {self.language} code inside ``` block to solve this problem."
                     }
                 ]
 
