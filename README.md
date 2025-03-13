@@ -3,11 +3,9 @@
 # SMAP: Self-enhanced Multi-Agent Code Generation for Competitive Problem Solving
       
 
-## Abstract
-While large language models (LLMs) have demonstrated impressive ability in natural language processing (NLP), they are struggling for addressing the code generation tasks with complicated human intent. It is universally recognized that‌ humans require insights into problem descriptions, elaborate planning to decompose complex solutions and organize code with modules prior to implementation. To achieve this aim, we introduce a self-enhanced multi-agent prompting (SMAP) approach to code generation tasks by imitating human developers, where enhanced LLM agents are mainly committed to emulating two heuristic phases, namely consensus planning phase and modular programming phase after distilling the problem. Specifically, in the consensus planning phase, LLM agent leverages the insight into the discrepancies among potential prospectives for high-quality plan with less overlooked details. Then, in the modular programming phase, the agent generates code solution by fully considering the hierarchical structure of code modules. We conduct extensive experiments on eight challenging competitive problem-solving and program synthesis benchmarks. Experimental results show that SMAP showcases remarkable code generation capabilities, achieving new state-of-the-art (pass@1) results. Moreover, our SMAP approach consistently delivers superior performance across various programming languages and varying problem difficulties.
 
 
-## SMAP Overview
+## Overview
 ![SMAP Overview](./images/overview.png)
 We propose a self-enhanced multi-agent promoting (SMAP) approach, which aims to make LLM agents think like senior programmers for competitive problem-solving. Our framework enhances the unsophisticated programming cycle with four LLM agents, and it includes rule-based retriever, consensus planning, structured programming and plan-derived debugging. SMAP first provides insights into problem description through rule-based retriever. Then it refines the plans derived from retrieved examples by reflecting on differences in perspectives. Sequentially, it enhances the relationship among modules with hierarchically modular coding. Finally, plan-derived debugging refers to the sample I/O from the problem description for fixing bugs in generated code, which requires no extra test case generation. In this section, we first introduce the retriever agent, and then illustrate the planning and the programming in detail. 
 
